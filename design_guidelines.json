@@ -1,0 +1,86 @@
+{
+  "identity": {
+    "designer": "E1",
+    "theme": "light",
+    "archetype": "3 (Pastel & Soft) mixed with Tactile Organic elements"
+  },
+  "narrative": "Tech meets poetry meets scrapbook diary - A tour guide metaphor.",
+  "colors": {
+    "background": "#f5f0e8",
+    "accent_pink": "#f4a6c6",
+    "text_charcoal": "#222222",
+    "card_beige": "#eaddce",
+    "white": "#ffffff",
+    "border_subtle": "#d5c9ba"
+  },
+  "typography": {
+    "heading_editorial": {
+      "family": "Playfair Display, serif",
+      "weight": "800",
+      "usage": "Hero name, massive section titles. Gives the 'poetry/magazine' vibe."
+    },
+    "handwriting": {
+      "family": "Caveat, cursive",
+      "weight": "400",
+      "usage": "Tour guide notes (e.g., 'Hi, since you\\'re here...'), sticky notes, playful captions."
+    },
+    "body_sans": {
+      "family": "Outfit, sans-serif",
+      "weight": "300, 400, 500",
+      "usage": "Main text, clean UI elements, tags."
+    }
+  },
+  "layout_spacing": {
+    "strategy": "Asymmetric Bento/Collage. Elements should feel intentionally scattered yet aligned.",
+    "spacing": "Generous gaps (gap-8, gap-12), heavy padding inside cards (p-8)."
+  },
+  "surface_textures": {
+    "paper_grain": "SVG noise overlay or CSS mix-blend-mode grain over the background.",
+    "polaroid": "bg-white p-3 pb-12 shadow-lg border border-gray-100, rotated slightly (-2deg, 3deg).",
+    "sticky_note": "bg-[#fdf0a6] p-4 shadow-md font-caveat text-2xl text-gray-800 rotate-[2deg].",
+    "scrapbook_sticker": "bg-white border-[3px] border-white rounded-xl shadow-sm text-sm px-3 py-1 font-bold inline-block"
+  },
+  "media": {
+    "profile_hero": "https://customer-assets.emergentagent.com/job_vanshika-universe/artifacts/92e9oqf4_WhatsApp%20Image%202026-05-14%20at%2010.15.24%20PM%20%283%29.jpeg",
+    "speaking_event": "https://customer-assets.emergentagent.com/job_vanshika-universe/artifacts/ujf18isf_WhatsApp%20Image%202026-05-14%20at%2010.15.27%20PM%20%282%29.jpeg",
+    "coding_hackathon": "https://customer-assets.emergentagent.com/job_vanshika-universe/artifacts/4e6ou7e1_WhatsApp%20Image%202026-05-14%20at%2010.13.23%20PM%20%281%29.jpeg",
+    "debate_certificate": "https://customer-assets.emergentagent.com/job_vanshika-universe/artifacts/gnoy8ny8_WhatsApp%20Image%202026-05-14%20at%2010.13.28%20PM%20%281%29.jpeg"
+  },
+  "sections": [
+    {
+      "name": "Hero",
+      "description": "Big pink editorial typography (Vanshika Saxena). A sticky note 'Hi, since you\\'re here, let me be ya tour guide'. Profile photo styled as a Polaroid.",
+      "data_testid": "hero-section"
+    },
+    {
+      "name": "About Me & Personality Cards",
+      "description": "Modular bento grid (warm cream/beige cards). Skill tags as floating scrapbook stickers. Clean sans-serif body.",
+      "data_testid": "about-section"
+    },
+    {
+      "name": "Timeline & Hackathons",
+      "description": "Vertical journey timeline, animated. Hackathon photo placed as a memory.",
+      "data_testid": "timeline-section"
+    },
+    {
+      "name": "Projects",
+      "description": "Hover expansion cards. Tech stack stickers floating around the borders.",
+      "data_testid": "projects-section"
+    },
+    {
+      "name": "Debate & Literature",
+      "description": "Scrapbook collage layout. Debate certificate and Speaking event photos layered over each other with tape or staple effects (CSS).",
+      "data_testid": "debate-section"
+    },
+    {
+      "name": "Contact & Links",
+      "description": "EmailJS form styled like a torn diary page. Social links (Instagram, Medium) styled as big bold interactive stamps.",
+      "data_testid": "contact-section"
+    }
+  ],
+  "technical_rules": {
+    "data_testid_requirement": "ALL interactive elements, buttons, links, inputs, and major sections MUST have data-testid attributes using kebab-case role-based names.",
+    "animations": "Use framer-motion for scroll reveals and hover micro-interactions. Ensure elements feel 'tactile' when hovered.",
+    "libraries": "framer-motion, emailjs-browser, lucide-react"
+  }
+}

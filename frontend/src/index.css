@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Caveat:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 38 33% 93%;
+        --foreground: 0 0% 13%;
+        --card: 38 33% 93%;
+        --card-foreground: 0 0% 13%;
+        --popover: 38 33% 93%;
+        --popover-foreground: 0 0% 13%;
+        --primary: 340 82% 81%;
+        --primary-foreground: 0 0% 13%;
+        --secondary: 30 30% 87%;
+        --secondary-foreground: 0 0% 13%;
+        --muted: 30 30% 87%;
+        --muted-foreground: 0 0% 45%;
+        --accent: 340 82% 81%;
+        --accent-foreground: 0 0% 13%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 30 20% 78%;
+        --input: 30 20% 78%;
+        --ring: 340 82% 81%;
+        --radius: 0.5rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-cream text-charcoal font-body;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4 {
+        @apply font-editorial;
+    }
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit; margin-right: inherit; margin-top: inherit; margin-bottom: inherit;
+        padding-left: inherit; padding-right: inherit; padding-top: inherit; padding-bottom: inherit;
+        column-gap: inherit; row-gap: inherit; gap: inherit;
+        border-left-width: inherit; border-right-width: inherit; border-top-width: inherit; border-bottom-width: inherit;
+        border-left-style: inherit; border-right-style: inherit; border-top-style: inherit; border-bottom-style: inherit;
+        border-left-color: inherit; border-right-color: inherit; border-top-color: inherit; border-bottom-color: inherit;
+    }
+}
+
+/* Grain noise overlay */
+.grain-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Torn paper edge */
+.torn-paper-top {
+    position: relative;
+}
+.torn-paper-top::before {
+    content: '';
+    position: absolute;
+    top: -12px; left: 0; right: 0;
+    height: 12px;
+    background: linear-gradient(135deg, transparent 33.33%, #f5f0e8 33.33%, #f5f0e8 66.66%, transparent 66.66%),
+                linear-gradient(225deg, transparent 33.33%, #f5f0e8 33.33%, #f5f0e8 66.66%, transparent 66.66%);
+    background-size: 24px 12px;
+}
+
+.torn-paper-bottom {
+    position: relative;
+}
+.torn-paper-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; left: 0; right: 0;
+    height: 12px;
+    background: linear-gradient(135deg, transparent 33.33%, #eaddce 33.33%, #eaddce 66.66%, transparent 66.66%),
+                linear-gradient(225deg, transparent 33.33%, #eaddce 33.33%, #eaddce 66.66%, transparent 66.66%);
+    background-size: 24px 12px;
+}
+
+/* Polaroid style */
+.polaroid {
+    background: white;
+    padding: 12px 12px 48px 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    border: 1px solid #e8e0d4;
+}
+
+/* Sticky note */
+.sticky-note {
+    background: #fdf6d8;
+    padding: 16px 20px;
+    box-shadow: 2px 3px 8px rgba(0,0,0,0.1);
+    font-family: 'Caveat', cursive;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+/* Tape effect */
+.tape {
+    position: relative;
+}
+.tape::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 16px;
+    background: rgba(240, 230, 200, 0.7);
+    border: 1px solid rgba(200, 190, 170, 0.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f5f0e8; }
+::-webkit-scrollbar-thumb { background: #d5c9ba; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #f4a6c6; }
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Selection color */
+::selection {
+    background: #f4a6c6;
+    color: #222;
+}

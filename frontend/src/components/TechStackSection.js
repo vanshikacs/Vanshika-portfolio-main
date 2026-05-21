@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const skillGroups = [
   {
     category: 'Languages',
-    skills: ['Python', 'Java', 'C/C++', 'JavaScript', 'TypeScript basics'],
+    skills: ['Python', 'C/C++', 'JavaScript', 'TypeScript basics'],
   },
   {
     category: 'Frontend',

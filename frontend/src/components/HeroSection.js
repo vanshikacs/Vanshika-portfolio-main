@@ -121,9 +121,14 @@ export default function HeroSection() {
               <button onClick={scrollToWork} data-testid="hero-view-work-btn" className="px-6 py-3 bg-charcoal text-cream font-body text-sm font-medium rounded-full hover:bg-charcoal/90 transition-all hover:scale-105 active:scale-95">
                 View My Work
               </button>
-              <a href="/cv-placeholder.pdf" download data-testid="hero-download-cv-btn" className="px-6 py-3 border-2 border-charcoal text-charcoal font-body text-sm font-medium rounded-full hover:bg-charcoal hover:text-cream transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2">
-                <Download size={16} /> Download CV
-              </a>
+              <a
+  href="/files/Vanshika_Saxena_Resume.pdf"
+  download="Vanshika_Saxena_Resume.pdf"
+  data-testid="hero-download-cv-btn"
+  className="px-6 py-3 border-2 border-charcoal text-charcoal font-body text-sm font-medium rounded-full hover:bg-charcoal hover:text-cream transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2"
+>
+  <Download size={16} /> Download CV
+</a>
               <button onClick={scrollToContact} data-testid="hero-contact-btn" className="px-6 py-3 bg-pink-accent text-charcoal font-body text-sm font-medium rounded-full hover:bg-pink-accent/80 transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2">
                 <Mail size={16} /> Contact Me
               </button>

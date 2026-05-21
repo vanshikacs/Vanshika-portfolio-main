@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, MapPin, Github, Linkedin, Instagram, Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const CONTACT_EMAIL = 'vs.vs9411@gmail.com';
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -21,39 +21,42 @@ export default function ContactSection() {
     setStatus('sending');
     setErrorMsg('');
 
+    const emailSubject = `Portfolio message from ${form.name}`;
+    const emailBody = `Name: ${form.name}
+Email: ${form.email}
+
+Message:
+${form.message}`;
+
     try {
-      // Save to backend first (always works)
-      await fetch(`${BACKEND_URL}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-      // Try EmailJS (silently fail if keys are placeholders)
-      try {
-        const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
-        const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-        const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+      if (serviceId && templateId && publicKey && !serviceId.includes('your_')) {
+        await emailjs.send(serviceId, templateId, {
+          to_email: CONTACT_EMAIL,
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+          reply_to: form.email,
+        }, publicKey);
 
-        if (serviceId && templateId && publicKey && !serviceId.includes('your_')) {
-          await emailjs.send(serviceId, templateId, {
-            from_name: form.name,
-            from_email: form.email,
-            message: form.message,
-            reply_to: form.email,
-          }, publicKey);
-        }
-      } catch (emailErr) {
-        console.log('EmailJS not configured yet:', emailErr);
+        setStatus('success');
+        setForm({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+        return;
       }
 
+      const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoLink;
       setStatus('success');
       setForm({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 5000);
+      setTimeout(() => setStatus('idle'), 7000);
     } catch (err) {
       console.error('Contact form error:', err);
       setStatus('error');
-      setErrorMsg('Something went wrong. Please try again or email me directly.');
+      setErrorMsg('Something went wrong. Please email me directly at vs.vs9411@gmail.com.');
     }
   };
 
@@ -86,7 +89,7 @@ export default function ContactSection() {
 
             <div className="space-y-4 mb-8">
               <a href="mailto:vs.vs9411@gmail.com" className="flex items-center gap-3 font-body text-sm text-charcoal/70 hover:text-pink-accent transition-colors" data-testid="contact-email-link">
-                <Mail size={18} className="text-pink-accent" /> vs.vs9411@gmail.com
+                <Mail size={18} className="text-pink-accent" /> {CONTACT_EMAIL}
               </a>
               <div className="flex items-center gap-3 font-body text-sm text-charcoal/60">
                 <MapPin size={18} className="text-pink-accent" /> Lucknow, India
@@ -177,7 +180,7 @@ export default function ContactSection() {
               {status === 'success' && (
                 <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-xl">
                   <CheckCircle size={16} className="text-green-600" />
-                  <p className="font-body text-sm text-green-800">Message sent! I'll get back to you soon.</p>
+                  <p className="font-body text-sm text-green-800">Message ready! Your email app should open, or I’ll receive it through EmailJS if configured.</p>
                 </div>
               )}
               {status === 'error' && (
@@ -221,3 +224,4 @@ export default function ContactSection() {
     </section>
   );
 }
+
